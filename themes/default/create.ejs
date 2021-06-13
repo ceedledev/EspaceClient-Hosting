@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- Primary Meta Tags -->
+<title><%= extra.servers.title.list %></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="<%= extra.faviconlink %>"/>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <link type="text/css" href="../assets/<%= theme %>/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link type="text/css" href="../assets/<%= theme %>/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link type="text/css" href="../assets/<%= theme %>/vendor/notyf/notyf.min.css" rel="stylesheet">
+    <link type="text/css" href="../assets/<%= theme %>/css/volt.css" rel="stylesheet">
+    <% if (settings.api.arcio.enabled == true) { %>
+        <script async src="https://arc.io/widget.min.js#<%= settings.api.arcio.widgetid %>"></script>
+    <% } %>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-md-none">
+        <a class="navbar-brand me-lg-5" href="../../dashboard">
+            <span class="mt-1 ms-1 sidebar-text"><%= extra.home.name %></span>
+    
+        </a>
+        <div class="d-flex align-items-center">
+            <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    
+            <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white collapse" data-simplebar>
+      <div class="sidebar-inner px-4 pt-3">
+        <ul class="nav flex-column pt-3 pt-md-0">
+          <li class="nav-item">
+            <a href="../../dashboard" class="nav-link d-flex align-items-center">
+              <span class="mt-1 ms-1 sidebar-text"><%= extra.home.name %></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../../dashboard" class="nav-link">
+              <span class="sidebar-icon"><span class="fas fa-chart-pie"></span></span>
+              <span class="sidebar-text">Dashboard</span>
+            </a>
+          </li>
+          <% if (pterodactyl.root_admin == true) { %>
+          <li class="nav-item">
+            <a href="../../admin" class="nav-link d-flex justify-content-between">
+              <span>
+                <span class="sidebar-icon"><span class="fas fa-users-cog"></span></span>
+                <span class="sidebar-text">Admin </span>
+              </span>
+              <span>
+                <span class="badge badge-md bg-secondary ms-1 text-dark"><i class="fas fa-crown"></i></span>
+              </span>
+            </a>
+          </li>
+          <% } %>
+          <li class="nav-item  active ">
+            <a href="../../servers" class="nav-link">
+              <span class="sidebar-icon"><span class="fas fa-list"></span></span>
+              <span class="sidebar-text">Servers List</span>
+            </a>
+          </li>
+          <% if (settings.api.client.coins.store.enabled == true) { %>
+          <li class="nav-item ">
+            <a href="../../store" class="nav-link">
+              <span class="sidebar-icon"><span class="fas fa-shopping-bag"></span></span>
+              <span class="sidebar-text">Store</span>
+            </a>
+          </li>
+          <% } %>
+          
+          <li class="nav-item">
+            <a href="<%= settings.pterodactyl.domain %>"
+              class="btn btn-secondary d-flex align-items-center justify-content-center btn-upgrade-pro">
+              <span class="sidebar-icon"><span class="fas fa-rocket me-2"></span></span> <span>Panel</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <main class="content">
+
+        <nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
+<div class="container-fluid px-0">
+  <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
+    <div class="d-flex align-items-center">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+        <div class="btn-toolbar dropdown">
+            <% if (typeof coins == "number") { %>
+            <div class="btn btn-dark btn-sm me-2 dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="fas fa-coins me-2"></span>You have <%= coins %> coin<%= coins == 1 ? "" : "s" %>.
+            </div>
+            <% } %>
+        </div>
+    </div>
+    </div>
+    <!-- Navbar links -->
+    <ul class="navbar-nav align-items-center">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="media d-flex align-items-center">
+            <img class="user-avatar md-avatar rounded-circle" alt="Image placeholder" src="https://cdn.discordapp.com/avatars/<%= req.session.userinfo.id%>/<%= req.session.userinfo.avatar %>">
+            <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
+              <span class="mb-0 font-small fw-bold"><%= req.session.userinfo.username%>#<%= req.session.userinfo.discriminator %>                  </span>
+            </div>
+          </div>
+        </a>
+        <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-0">
+            <a class="dropdown-item rounded-bottom fw-bold" href="../../logout"><span class="fas fa-sign-out-alt text-danger"></span>Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+
+<% if (settings.api.client.allow.server.create == true) { %>
+    <% if (req.query.err) { %>
+        <center>
+        <div class="col-12 col-sm-6 col-xl-11 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="h5">Note</h2>
+                    <div class="small mb-3">  
+                        <% if (req.query.err == "MISSINGVARIABLE") { %>
+                            You have not filled out all of the server information.
+                        <% } else if (req.query.err == "NOTANUMBER") { %>
+                            RAM, disk and CPU must be a number.
+                        <% } else if (req.query.err == "ERRORONCREATE") { %>
+                            There has been an error while attempting to create your server. Please alert an administrator to fix this problem.
+                        <% } else if (req.query.err == "BIGSERVERNAME") { %>
+                            Your server name must be less than <b>191</b> characters.
+                        <% } else if (req.query.err == "TOOMUCHSERVERS") { %>
+                            The server could not be created because you have requested to create a server that exceeds your plan.
+                        <% } else if (req.query.err == "PREMIUMLOCATION") { %>
+                            You cannot make a server on the selected location on your current package.
+                        <% } else { %>
+                            <% if (req.query.num) { %>
+                                <% if (!isNaN(parseFloat(req.query.num))) { %>
+                                    <% if (req.query.err == "TOOLITTLERAM" || req.query.err == "TOOLITTLEDISK" || req.query.err == "TOOLITTLECPU") { %>
+                                        You must make a server with at least <b><%= req.query.num %></b>
+                                        <% if (req.query.err.slice(-3) == "RAM") { %>
+                                            MB RAM
+                                        <% } else if (req.query.err.slice(-4) == "DISK") { %>
+                                            MB disk
+                                        <% } else { // CPU %>
+                                            % CPU
+                                        <% } %>
+                                        if you want to create a server with the server type you have selected.
+                                    <% } else if (req.query.err == "TOOMUCHRAM" || req.query.err == "TOOMUCHDISK" || req.query.err == "TOOMUCHCPU") { %>
+                                        With the selected server type, you can have a maximum of <b><%= req.query.num %></b>
+                                        <% if (req.query.err.slice(-3) == "RAM") { %>
+                                            MB RAM
+                                        <% } else if (req.query.err.slice(-4) == "DISK") { %>
+                                            MB disk
+                                        <% } else { // CPU %>
+                                            % CPU
+                                        <% } %>
+                                        on the server.
+                                    <% } else if (req.query.err == "EXCEEDRAM" || req.query.err == "EXCEEDDISK" || req.query.err == "EXCEEDCPU") { %>
+                                        The server could not be created because you have requested to create a server that exceeds your plan.
+                                    <% } else { %>
+                                        I won't mind to add a little easter egg here. :)
+                                    <% } %>
+                                <% } else { %>
+                                    I won't mind to add a little easter egg here. :)
+                                <% } %>
+                            <% } else { %>
+                                I won't mind to add a little easter egg here. :)
+                            <% } %>
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+        </div></center>
+        <% } %>
+<% } %>
+   
+
+
+
+<div class="row">
+    <div class="col-12 col-xl-8">
+        <div class="card card-body shadow-sm mb-4">
+          <h2 class="h5 mb-4">Create A New Server.</h2>
+          <form action="/create">
+              <div class="row">
+                  <div class="col-md-12 mb-3">
+                      <div>
+                          <label for="first_name">Server Name:</label>
+                          <input id="name" name="name" class="form-control" placeholder="Name Of The Server You Want To Create">
+                      </div>
+                  </div>
+
+                  <div class="row">
+                        <div class="col-sm-6 mb-2">
+                            <div class="form-group">
+                                <label for="city">Location</label>
+                                <select class="form-select mb-0" id="location" name="location" aria-label="Server Wanted location">
+                                    <% for (let [name, value] of Object.entries(settings.api.client.locations)) { %>
+                                        <option value="<%= name %>"><%= value.name %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-2">
+                            <div class="form-group">
+                                <label for="city">Egg</label>
+                                <select class="form-select mb-0" id="egg" name="egg" aria-label="Server Wanted Egg">
+                                    <% for (let [name, value] of Object.entries(settings.api.client.eggs)) { %>
+                                        <option value="<%= name %>"><%= value.display %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                  <div class="row">
+                    <div class="col-sm-4 mb-3">
+                        <div class="form-group">
+                            <label for="city">RAM</label>
+                            <input name="ram" id="ram" type="number" class="form-control" placeholder="Server Ram">
+                            <small id="ramHelp" class="form-text text-muted">In megabytes</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 mb-3">
+                        <div class="form-group">
+                            <label for="city">Disk</label>
+                            <input name="disk" id="disk" type="number" class="form-control" placeholder="500">
+                            <small id="diskHelp" class="form-text text-muted">In megabytes</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="zip">CPU</label>
+                            <input name="cpu" id="cpu" type="number" class="form-control" placeholder="25">
+                            <small id="diskHelp" class="form-text text-muted">1 core = 100</small>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="mt-3">
+                  <button type="submit" onclick="submitForm()" class="btn btn-primary">Create</button>
+              </div>
+          </form>
+      </div>
+    </div>
+    <div class="col-12 col-xl-4">
+        <div class="row">
+            <%
+            let ram = 0;
+            let disk = 0;
+            let cpu = 0;
+            let servers = pterodactyl.relationships.servers.data.length;
+            for (let i = 0, len = pterodactyl.relationships.servers.data.length; i < len; i++) {
+                ram = ram + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.memory == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.memory : 0);
+                disk = disk + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.disk == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.disk : 0);
+                cpu = cpu + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.cpu == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.cpu : 0);
+            }
+        %>
+            <div class="col-12 mb-4">
+                <div class="card shadow-sm text-center p-0">
+                    <div class="profile-cover rounded-top" data-background="<%= extra.servers.wallpaper %>"></div>
+                    <div class="card-body pb-5">
+                        <img src="https://cdn.discordapp.com/avatars/<%= req.session.userinfo.id%>/<%= req.session.userinfo.avatar %>" class="user-avatar large-avatar rounded-circle mx-auto mt-n7 mb-4" alt="<%= req.session.userinfo.username%>#<%= req.session.userinfo.discriminator %>">
+                        <h4 class="h3"><%= req.session.userinfo.username%>#<%= req.session.userinfo.discriminator %></h4>
+                        <h5 class="fw-normal">Admin</h5>
+                        <div class="btn btn-sm btn-dark me-2"><span class="fas fa-memory me-1"></span> <%= (packages ? packages.ram : 0) + extraresources.ram - ram %></div>
+                        <div class="btn btn-sm btn-secondary"><span class="fas fa-hdd me-1"></span> <%= (packages ? packages.disk : 0) + extraresources.disk - disk%></div>
+                        <div class="btn btn-sm btn-danger me-2"><span class="fas fa-microchip me-1"></span> <%= (packages ? packages.cpu : 0) + extraresources.cpu - cpu%></div>
+                        <div class="btn btn-sm btn-info"><span class="fas fa-server me-1"></span> <%= (packages ? packages.servers : 0) + extraresources.servers - servers%></div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </main>
+        <script>
+            async function submitForm() {
+                let name = encodeURIComponent(document.getElementById("name").value);
+                let egg = encodeURIComponent(document.getElementById("egg").value);
+                let ram = encodeURIComponent(document.getElementById("ram").value);
+                let disk = encodeURIComponent(document.getElementById("disk").value);
+                let cpu = encodeURIComponent(document.getElementById("cpu").value);
+                let location = encodeURIComponent(document.getElementById("location").value);
+                document.location.href = `/create?name=${name}&egg=${egg}&ram=${ram}&disk=${disk}&cpu=${cpu}&location=${location}`;
+            };
+        </script>
+<!-- Js -->
+<script src="../assets/<%= theme %>/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="../assets/<%= theme %>/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../assets/<%= theme %>/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+<script src="../assets/<%= theme %>/vendor/nouislider/distribute/nouislider.min.js"></script>
+<script src="../assets/<%= theme %>/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="../assets/<%= theme %>/vendor/chartist/dist/chartist.min.js"></script>
+<script src="../assets/<%= theme %>/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<script src="../assets/<%= theme %>/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+<script src="../assets/<%= theme %>/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+<script src="../assets/<%= theme %>/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+<script src="../assets/<%= theme %>/vendor/notyf/notyf.min.js"></script>
+<script src="../assets/<%= theme %>/vendor/simplebar/dist/simplebar.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="../assets/<%= theme %>/assets/js/volt.js"></script>
+    
+</body>
+
+</html>

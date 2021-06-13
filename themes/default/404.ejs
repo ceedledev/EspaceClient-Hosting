@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- Primary Meta Tags -->
+<title><%= extra.error.title %></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="<%= extra.faviconlink %>"/>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <link type="text/css" href="./assets/<%= theme %>/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link type="text/css" href="./assets/<%= theme %>/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link type="text/css" href="./assets/<%= theme %>/vendor/notyf/notyf.min.css" rel="stylesheet">
+    <link type="text/css" href="./assets/<%= theme %>/css/volt.css" rel="stylesheet">
+    <% if (settings.api.arcio.enabled == true) { %>
+        <script async src="https://arc.io/widget.min.js#<%= settings.api.arcio.widgetid %>"></script>
+    <% } %>
+</head>
+
+<body>
+
+
+     
+
+    <main>
+        <section class="vh-100 d-flex align-items-center justify-content-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center d-flex align-items-center justify-content-center">
+                        <div>
+                            <img class="img-fluid w-75" src="./assets/<%= theme %>/assets/img/illustrations/404.svg" alt="404 not found">
+                            <h1 class="mt-5">Page not <span class="fw-bolder text-primary">found</span></h1>
+                            <p class="lead my-4">Oops! Looks like you followed a bad link. If you think this is a
+                                problem with us, please tell us.</p>
+                            <a class="btn btn-dark animate-hover" href="./"><i class="fas fa-chevron-left me-3 ps-2 animate-left-3"></i>Go home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <!-- javascript -->
+<script src="./assets/<%= theme %>/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/nouislider/distribute/nouislider.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/chartist/dist/chartist.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/notyf/notyf.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/simplebar/dist/simplebar.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="./assets/<%= theme %>/assets/js/volt.js"></script>
+
+    
+</body>
+
+</html>

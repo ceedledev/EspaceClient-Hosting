@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- Primary Meta Tags -->
+<title><%= extra.home.title %></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="<%= extra.faviconlink %>"/>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <link type="text/css" href="./assets/<%= theme %>/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link type="text/css" href="./assets/<%= theme %>/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link type="text/css" href="./assets/<%= theme %>/vendor/notyf/notyf.min.css" rel="stylesheet">
+    <link type="text/css" href="./assets/<%= theme %>/css/volt.css" rel="stylesheet">
+    <% if (settings.api.arcio.enabled == true) { %>
+        <script async src="https://arc.io/widget.min.js#<%= settings.api.arcio.widgetid %>"></script>
+    <% } %>
+</head>
+
+<body>
+
+    
+
+    <main>
+
+        <!-- Section -->
+        <section class="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
+            <div class="container">
+                <% if (req.query.err && !userinfo) { %>
+                    <p class="text-center">
+                    <% if (req.query.err == "MISSINGCODE") { %>
+                        Missing code.
+                    <% } else if (req.query.err == "MISSINGSCOPES") { %>
+                        Missing scopes.
+                    <% } else if (req.query.err == "IPBLOCKED") { %>
+                        You could not sign in, because your IP has been blocked from signing in.
+                    <% } else if (req.query.err == "ANTIALT") { %>
+                        It has been detected that you may be using an alt account.
+                    <% } else if (req.query.err == "ANOTHERACCOUNT") { %>
+                        We have detected an account with your Discord email on it but the user id has already been claimed on another Discord account.
+                    <% } else if (req.query.err == "UNKNOWN") { %>
+                        An error has occured when attempting to create your account.
+                    <% } else if (req.query.err == "DISABLED") { %>
+                        New users cannot signup currently.
+                    <% } else if (req.query.err == "CANNOTGETINFO") { %>
+                        An error has occured while attempting to get your user information.
+                    <% } else if (req.query.err == "UNVERIFIED") { %>
+                        Not verified a Discord account.
+                    <% } else if (req.query.err == "INVALIDCODE") { %>
+                        Invalid code.
+                    <% } else if (req.query.err == "DISCORD") { %>
+                        You must join the discord server to use the dashboard!
+                    <% } else { %>
+                        I won't mind to add a little easter egg here. :)
+                    <% } %>
+                    </p>
+            <% } %>
+                <div class="row justify-content-center form-bg-image" data-background-lg="./assets/<%= theme %>/assets/img/illustrations/signin.svg">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500" style="padding-top: 10vh !important;padding-bottom: 10vh !important;">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3"><%= extra.home.name %></h1>
+                            </div>
+                            <div class="mt-3 mb-4 text-center">
+                                <span class="fw-normal">We use discord for authonticating, note you'll automatically join our discord server</span>
+                            </div>
+                                <div class="d-grid">
+
+                                    <button type="submit" class="btn btn-dark" onclick="window.location.href = '<%= userinfo ? extra.home.buttontext.loggedin.link : extra.home.buttontext.loggedout.link %>';">
+                                        <% if (userinfo) { %>
+                                            <%=  extra.home.buttontext.loggedin.text %>
+                                        <% } else { %>
+                                            <i class='fab fa-discord'></i> <%=  extra.home.buttontext.loggedout.text %>
+                                        <% }  %>
+                                    </button>
+
+                                </div>
+                                <center>
+                            <div class="d-flex justify-content-center align-items-center mt-4">
+                                <span class="fw-normal">
+                                    By login in you agree on our 
+                                    <a href="./tos" class="fw-bold">Terms of service</a><br>
+                                    and our 
+                                    <a href="./privacy" class="fw-bold">Privacy Policy</a>
+                                </span>
+                            </div>
+                        </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- javascript -->
+<script src="./assets/<%= theme %>/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/nouislider/distribute/nouislider.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/chartist/dist/chartist.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/notyf/notyf.min.js"></script>
+<script src="./assets/<%= theme %>/vendor/simplebar/dist/simplebar.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="./assets/<%= theme %>/assets/js/volt.js"></script>
+
+    
+</body>
+
+</html>

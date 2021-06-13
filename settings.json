@@ -1,0 +1,182 @@
+{
+  "version": "0.3.6", 
+  "defaulttheme": "default", 
+  "website": {
+    "port": 20257, 
+    "secret": "JeTestLaNouvelleVersion" 
+  },
+  "pterodactyl": {
+    "domain": "https://game.cloudcordi.fr/", 
+    "key": "API KEY ADMIN"
+  },
+  "database": "sqlite://database.sqlite", 
+  "api": {
+    "client": {
+       "api": {
+         "enabled": false, 
+         "code": ""
+       },
+       "bot": {
+         "token": "Token", 
+         "joinguild": {
+           "_comment": "", 
+           "enabled": true, 
+           "guildid": ["835282418680070216", "ID du dexième"], 
+           "forcejoin": true 
+        }
+      },
+      "webhook": {
+        "_comment": "", 
+        "webhook_url": "https://discord.com/api/webhooks/842058961598677048/nYRpHJMe-fIY2nHUG9hIzFlOvuNzcWcU5q0tqybzdgzTrCo_ExCQL9NAy44SM0Ok_SLC", 
+        "auditlogs": {
+          "_comment": "", 
+          "enabled": true, 
+          "_comment2": "", 
+          "disabled": []
+        }
+      },
+      "passwordgenerator": {
+        "signup": false, 
+        "length": 8 
+      },
+      "allow": {
+        "newusers": true, 
+        "regen": true, 
+        "server": {
+          "create": true, 
+          "modify": true, 
+          "delete": true 
+        },
+        "overresourcessuspend": false, 
+        "renewsuspendsystem": {
+          "_comment": "",
+          "enabled": false, 
+          "time": 3600 
+        }
+      },
+      "oauth2": {
+        "_comment": "", 
+        "id": "", 
+        "secret": "", 
+        "link": "http://localhost:8080", 
+        "callbackpath": "/callback", 
+        "prompt": true, 
+
+        "ip": {
+          "trust x-forwarded-for": true, 
+          "block": [],
+          "duplicate check": false 
+        }
+      },
+      "ratelimits": {
+        "enabled": true, 
+
+        "trust x-forwarded-for": true, 
+
+        "requests": 30,
+        "per second": 60
+      },
+      "packages": {
+        "default": "default",
+        "list": {
+          "default": {
+            "ram": 500,
+            "disk": 1024,
+            "cpu": 100,
+            "servers": 1
+          }
+        }
+      },
+      "locations": {
+        "1": {
+          "name": "Europe",
+
+          "_comment": "",
+          "package": null
+        }
+      },
+      "eggs": {
+        "paper": {
+          "display": "Paper",
+          "minimum": {
+            "ram": 1024,
+            "disk": 1024,
+            "cpu": 100
+          },
+          "maximum": {
+            "ram": null,
+            "disk": null,
+            "cpu": null
+          },
+          "info": {
+            "egg": 3,
+            "docker_image": "quay.io/pterodactyl/core:java",
+            "startup": "java -Xms128M -Xmx{{SERVER_MEMORY}}M -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}",
+            "environment": {
+              "SERVER_JARFILE": "server.jar",
+              "BUILD_NUMBER": "latest"
+            },
+            "feature_limits": {
+              "databases": 1,
+              "backups": 1
+            }
+          }
+        },
+        "bungeecord": {
+          "display": "Bungeecord",
+          "minimum": {
+            "ram": 512,
+            "disk": 512,
+            "cpu": 75
+          },
+          "maximum": {
+            "ram": null,
+            "disk": null,
+            "cpu": null
+          },
+          "info": {
+            "egg": 1,
+            "docker_image": "quay.io/pterodactyl/core:java",
+            "startup": "java -Xms128M -Xmx{{SERVER_MEMORY}}M -jar {{SERVER_JARFILE}}",
+            "environment": {
+              "SERVER_JARFILE": "bungeecord.jar",
+              "BUNGEE_VERSION": "latest"
+            },
+            "feature_limits": {
+              "databases": 1,
+              "backups": 1
+            }
+          }
+        }
+      },
+      "coins": {
+        "enabled": false,
+        "store": {
+          "_comment": "",
+          "enabled": false,
+          "ram": {
+            "cost": 1,
+            "per": 1
+          },
+          "disk": {
+            "cost": 1,
+            "per": 1
+          },
+          "cpu": {
+            "cost": 1,
+            "per": 1
+          },
+          "servers": {
+            "cost": 1,
+            "per": 1
+          }
+        }
+      }
+    },
+    "arcio": {
+      "_comment": "",
+      "enabled": false, 
+      "widgetid": "ID"
+    }
+  }
+}
