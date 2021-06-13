@@ -15,7 +15,7 @@
 
 ### Configuration
 * Ouvrer le fichier `settings.json`<br>
-* Pour configurer les redirection. Allez sur votre `Espace Développeur`.<br>
+* Pour configurer les redirection. Allez sur votre [Espace Développeur](https://discord.com/developers/applications).<br>
 
 
 N'hésitez pas à ajouter une étoile ⭐ au référentiel pour promouvoir le projet!
