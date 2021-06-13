@@ -9,7 +9,7 @@
 * Télécharger le git complet<br>
 * Ouvrer le dossier EspaceClient<br>
 * Pour téléchanger les `node_modules` ouvrez le fichier `npm-modules.bat`<br>
-* Ensuite pour démarrer l'espace client, ouvrez votre `CMD` et écrivez `node server.js`<br>
+* Ensuite pour démarrer l'espace client, ouvrez votre `CMD` et écrivez `node index.js`<br>
 
 ### Configuration
 * Ouvrer le fichier `settings.json`<br>
