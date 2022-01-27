@@ -21,8 +21,8 @@
          "joinguild": {
            "_comment": "", 
            "enabled": true, 
-           "guildid": ["835282418680070216", "ID du dexième"], 
-           "forcejoin": true 
+           "guildid": ["ID DE VOTRE SERVEUR", "ID DU DEXIEME SERVEUR"], 
+           "forcejoin": true/false
         }
       },
       "webhook": {
@@ -56,8 +56,8 @@
       },
       "oauth2": {
         "_comment": "", 
-        "id": "", 
-        "secret": "", 
+        "id": "ID DU BOT", 
+        "secret": "CLIENT SECRET DU BOT", 
         "link": "http://localhost:8080", 
         "callbackpath": "/callback", 
         "prompt": true, 
