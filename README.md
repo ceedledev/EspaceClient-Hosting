@@ -2,8 +2,8 @@
 
 * Ce n'est pas la dernière version de l'espace client.
 
-[![](https://img.shields.io/discord/745382663896039496.svg?logo=discord&colorB=7289DA)](https://discord.gg/nF5vj4BhrH)
-[![](https://img.shields.io/badge/paypal-donate-blue.svg)](https://paypal.me/fabio2fell)
+[![](https://img.shields.io/discord/745382663896039496.svg?logo=discord&colorB=7289DA)](https://discord.gg/giftix)
+[![](https://img.shields.io/badge/paypal-donate-blue.svg)](https://paypal.me/nionledev)
 [![](https://img.shields.io/badge/discord.js-v12.0.0--dev-blue.svg?logo=npm)](https://github.com/discordjs)
 
 # Installation
@@ -22,5 +22,5 @@ N'hésitez pas à ajouter une étoile ⭐ au référentiel pour promouvoir le pr
 
 ## Liens
 
-*   [Discord](https://discord.gg/nF5vj4BhrH)
-*   [Github](https://github.com/kziiz/)
+*   [Discord](https://discord.gg/giftix)
+*   [Github](https://github.com/ceedledev/)
